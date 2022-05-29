@@ -11,12 +11,16 @@
 </head>
 <body>
 <div class="container">
+    <br>
+    <H1>Список Продуктов</H1>
     <table class="table">
         <thead>
         <tr>
             <td>ID</td>
             <td>Наименование</td>
             <td>Стоимость</td>
+            <td></td>
+            <td></td>
             <td></td>
         </tr>
         </thead>
@@ -27,6 +31,12 @@
             <td th:text="${prods.cost}"></td>
             <td>
                 <a th:href="@{'/show/' + ${prods.id}}" class="btn btn-secondary">Подробнее</a>
+            </td>
+            <td>
+                <a th:href="@{'/cost_up/' + ${prods.id}}" class="btn btn-secondary">+</a>
+            </td>
+            <td>
+                <a th:href="@{'/cost_down/' + ${prods.id}}" class="btn btn-secondary">-</a>
             </td>
         </tr>
         </tbody>

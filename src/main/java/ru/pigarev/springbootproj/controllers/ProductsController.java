@@ -48,8 +48,22 @@ public class ProductsController {
 
     //POST http://localhost:8189/app/create
     @PostMapping("/create")
-    public String saveProduct(@RequestParam Long id, @RequestParam String title, @RequestParam Double cost) {
-        productService.saveProduct(new Product(id, title, cost));
+    public String saveProduct(@ModelAttribute Product product) {
+        productService.saveProduct(product);
+        return "redirect:/show_all";
+    }
+
+    //GET http://localhost:8189/app/cost_up/{id}
+    @GetMapping("/cost_up/{id}")
+    public String costUp(@PathVariable Long id) {
+        productService.costUp(id);
+        return "redirect:/show_all";
+    }
+
+    //GET http://localhost:8189/app/cost_down/{id}
+    @GetMapping("/cost_down/{id}")
+    public String costDown(@PathVariable Long id) {
+        productService.costDown(id);
         return "redirect:/show_all";
     }
 }

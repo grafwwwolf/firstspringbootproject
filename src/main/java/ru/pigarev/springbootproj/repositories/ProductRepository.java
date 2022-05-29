@@ -38,12 +38,13 @@ public class ProductRepository {
         productList.add(product);
     }
 
-    public void showProducts() {
-        System.out.println("----------------------------------------------------");
-        System.out.println("Список наших товаров:");
-        productList.forEach(product -> System.out.println(product));
-        System.out.println("Для добавления товара в корзину воспользуйтесь командой - add cart 'id', где 'id' - номер товара");
-        System.out.println("или воспользуйтесь командой - addall cart");
-        System.out.println("----------------------------------------------------");
+    public void costUp(Product product) {
+
+        product.setCost(product.getCost() + 1.0);
+    }
+
+    public void costDown(Product product) {
+
+        product.setCost(product.getCost() - 1.0);
     }
 }
