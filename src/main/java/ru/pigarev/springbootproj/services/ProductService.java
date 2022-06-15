@@ -34,6 +34,12 @@ public class ProductService {
     }
 
     public void costDown(Long id) {
+
         productRepository.costDown(getProduct(id));
+    }
+
+    public void removeProduct(Long id) {
+
+        productRepository.removeProduct(id);
     }
 }

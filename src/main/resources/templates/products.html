@@ -22,6 +22,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +38,9 @@
             </td>
             <td>
                 <a th:href="@{'/cost_down/' + ${prods.id}}" class="btn btn-secondary">-</a>
+            </td>
+            <td>
+                <a th:href="@{'/delete/' + ${prods.id}}" class="btn btn-secondary">Удалить</a>
             </td>
         </tr>
         </tbody>

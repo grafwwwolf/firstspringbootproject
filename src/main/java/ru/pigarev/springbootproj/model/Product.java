@@ -1,9 +1,23 @@
 package ru.pigarev.springbootproj.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "cost")
     private Double cost;
+
+
+    public Product() {
+
+    }
 
     public Product(long id, String title, double cost) {
         this.id = id;

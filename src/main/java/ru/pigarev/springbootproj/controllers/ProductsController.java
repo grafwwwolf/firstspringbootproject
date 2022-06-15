@@ -66,4 +66,11 @@ public class ProductsController {
         productService.costDown(id);
         return "redirect:/show_all";
     }
+
+    //GET http://localhost:8189/app/delete/{id}
+    @GetMapping("/delete/{id}")
+    public String removeProduct(@PathVariable Long id) {
+        productService.removeProduct(id);
+        return "redirect:/show_all";
+    }
 }

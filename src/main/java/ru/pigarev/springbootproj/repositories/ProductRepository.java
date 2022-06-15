@@ -1,50 +1,51 @@
 package ru.pigarev.springbootproj.repositories;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import ru.pigarev.springbootproj.hibernate.PrepareDataApp;
+import ru.pigarev.springbootproj.hibernate.crud.ProductDao;
 import ru.pigarev.springbootproj.model.Product;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-@Component
+@Repository
 public class ProductRepository {
 
-    private List<Product> productList;
+    private ProductDao productDao;
 
     @PostConstruct
     public void initRepository() {
-        this.productList = new ArrayList<>(Arrays.asList(
-                new Product(1L, "black leather jacket", 3600.00),
-                new Product(2L, "black leather bandana", 540.00),
-                new Product(3L, "black jeans", 2200.00),
-                new Product(4L, "black leather gloves", 1050.00),
-                new Product(5L, "T-shirt with print \'AC/DC\' ", 700.00)
-        ));
+        productDao = new ProductDao();
+        new PrepareDataApp().forcePrepareData();
     }
 
     public List<Product> getAllProducts() {
-        return Collections.unmodifiableList(productList);
+
+        return productDao.findAll();
     }
 
     public Product getProduct(Long id) {
 
-        return productList.stream().filter(product -> product.getId().equals(id)).findFirst().get();
+        return productDao.findBy(id);
     }
 
     public void saveProduct(Product product) {
-        productList.add(product);
+
+        productDao.saveOrUpdate(product);
     }
 
     public void costUp(Product product) {
 
-        product.setCost(product.getCost() + 1.0);
+        productDao.costUp(product);
     }
 
     public void costDown(Product product) {
 
-        product.setCost(product.getCost() - 1.0);
+        productDao.costDown(product);
+    }
+
+    public void removeProduct(Long id) {
+
+        productDao.deleteById(id);
     }
 }
