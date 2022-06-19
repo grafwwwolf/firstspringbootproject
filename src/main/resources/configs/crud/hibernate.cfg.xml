@@ -25,5 +25,6 @@
         <property name="current_session_context_class">thread</property>
 
         <mapping class="ru.pigarev.springbootproj.model.Product"/>
+        <mapping class="ru.pigarev.springbootproj.model.Buyer"/>
     </session-factory>
 </hibernate-configuration>

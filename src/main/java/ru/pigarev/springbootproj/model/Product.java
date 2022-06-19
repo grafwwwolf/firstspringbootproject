@@ -1,6 +1,7 @@
 package ru.pigarev.springbootproj.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -14,6 +15,13 @@ public class Product {
     @Column(name = "cost")
     private Double cost;
 
+    @ManyToMany
+    @JoinTable(
+            name = "buyers_products",
+            joinColumns = @JoinColumn(name = "products_id"),
+            inverseJoinColumns = @JoinColumn(name = "buyers_id")
+    )
+    private List<Buyer> buyers;
 
     public Product() {
 
@@ -47,6 +55,10 @@ public class Product {
 
     public void setCost(Double cost) {
         this.cost = cost;
+    }
+
+    public List<Buyer> getBuyers() {
+        return buyers;
     }
 
     @Override

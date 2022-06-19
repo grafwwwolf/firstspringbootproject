@@ -3,19 +3,21 @@ package ru.pigarev.springbootproj.hibernate.crud;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.pigarev.springbootproj.hibernate.MySessionFactory;
-import ru.pigarev.springbootproj.hibernate.PrepareDataApp;
+import ru.pigarev.springbootproj.model.Buyer;
 import ru.pigarev.springbootproj.model.Product;
 
 import java.util.List;
 import java.util.Objects;
-
+@Repository
 public class ProductDao {
 
-    private static SessionFactory factory;
+    private SessionFactory factory;
 
     @Autowired
     public ProductDao() {
+
         factory = MySessionFactory.getFactory();
     }
 
@@ -64,15 +66,16 @@ public class ProductDao {
         }
     }
 
-//    public static void main(String[] args) {
-//
-//        new PrepareDataApp().forcePrepareData();
-////        System.out.println(new ProductDao().findBy(1L));
-////        System.out.println(new ProductDao().findAll());
-//        new ProductDao().saveOrUpdate(new Product(10L, "newFuck", 600.00));
-//        new ProductDao().saveOrUpdate(new Product(13L, "newFuck2", 600.00));
-//        new ProductDao().saveOrUpdate(new Product(20L, "newFuck3", 600.00));
-//    }
+    public void showProductBuyersById(Long id) {
+
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            Product product = session.get(Product.class, id);
+            System.out.println(product);
+            System.out.println(product.getBuyers());
+            session.getTransaction().commit();
+        }
+    }
 
     public void costUp(Product product) {
 

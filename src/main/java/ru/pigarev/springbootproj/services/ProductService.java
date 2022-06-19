@@ -13,8 +13,8 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductService() {
+        productRepository = new ProductRepository();
     }
 
     public List<Product> getAllProducts() {
@@ -41,5 +41,9 @@ public class ProductService {
     public void removeProduct(Long id) {
 
         productRepository.removeProduct(id);
+    }
+
+    public void showProductBuyersById(Long id) {
+        productRepository.showProductBuyersById(id);
     }
 }

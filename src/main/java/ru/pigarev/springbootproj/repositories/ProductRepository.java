@@ -13,11 +13,15 @@ public class ProductRepository {
 
     private ProductDao productDao;
 
-    @PostConstruct
-    public void initRepository() {
+    public ProductRepository() {
         productDao = new ProductDao();
-        new PrepareDataApp().forcePrepareData();
     }
+
+//    @PostConstruct
+//    public void initRepository() {
+//        productDao = new ProductDao();
+////        new PrepareDataApp().forcePrepareData();
+//    }
 
     public List<Product> getAllProducts() {
 
@@ -47,5 +51,10 @@ public class ProductRepository {
     public void removeProduct(Long id) {
 
         productDao.deleteById(id);
+    }
+
+    public void showProductBuyersById(Long id) {
+
+        productDao.showProductBuyersById(id);
     }
 }
